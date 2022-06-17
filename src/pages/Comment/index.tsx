@@ -15,10 +15,10 @@ function Comment() {
 	}
 	return (
 		<Container>
-				<Textarea onChange={(e) => 
+				<Textarea width='90%' height='88px' onChange={(e) => 
 					{setComment(e.target.value)}} value={comment}>
 				</Textarea>
-				<Button onClick={addComment}>Comentar</Button>
+				<Button width='90%' height='36px' onClick={addComment}>Comentar</Button>
 				<ul>
 					{listComment.map(prop=>(
 						<li key={prop}>{prop}</li>
