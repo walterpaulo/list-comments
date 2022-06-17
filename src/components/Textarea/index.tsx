@@ -1,15 +1,20 @@
 import React, { TextareaHTMLAttributes } from 'react';
-import { Container } from './style';
+import { Texts, MaxLengthTextare, Container } from './style';
 
 type TextareaProps = {
    width?: string;
    height?: string;
 } & TextareaHTMLAttributes<HTMLTextAreaElement>
 
-export const Textarea:React.FC<TextareaProps> = ({ children, width, height, ...rest }) => {
+export const Textarea:React.FC<TextareaProps> = ({ children, width, height, maxLength, ...rest }) => {
     return (
-        <Container widht={width} height={height} {...rest}>
-            {children}
+        <Container>
+            <Texts widht={width} height={height} maxLength={maxLength} {...rest}>
+                {children}
+            </Texts>
+            <MaxLengthTextare>
+                {maxLength}
+            </MaxLengthTextare>
         </Container>
     );
 }
