@@ -32,3 +32,31 @@ export const P = styled.p`
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	min-height: 24px;
 `
+export const MessageDialog = styled.div`
+	display: none;
+	position: absolute;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100vw;
+	height: 100vh;
+	z-index: 999;
+	justify-content: center;
+	align-items: center;
+`
+export const MessageText = styled.div`
+	display: flex;
+	background-color: var(--bg-color);
+	width: 270px;
+	height: 120px;
+	border-radius: 5px;
+	color: var(--color-bg-black);
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+`
+export const BoxButtonH = styled.div`
+	display: flex;
+	justify-content: space-around;
+	gap: 10px
+`
