@@ -9,6 +9,8 @@ export const Container = styled.div`
 	gap: 10px;
 	background-color: var(--bg-color-primary);
 	padding-top: 10px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	margin: 10px 0 40px 0;
 `
 export const BoxMessagem = styled.div`
 	width: 90%;

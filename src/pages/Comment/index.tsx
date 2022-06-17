@@ -29,6 +29,7 @@ function Comment() {
 
 	return (
 		<Container>
+      <img src='./images/imagep.jpg' alt='image' />
 			<h2>Postar novo comentário</h2>
       <Textarea width='80%' height='100px' maxLength={108} numberText={numberText} onChange={handleTextarae} value={comment}>
       </Textarea>
