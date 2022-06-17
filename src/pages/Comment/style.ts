@@ -13,6 +13,11 @@ export const Container = styled.div`
 export const BoxMessagem = styled.div`
 	width: 90%;
 	`
+export const ShowButton = styled.div`
+	width: 90%;
+	display: flex;
+	justify-content: center;
+`
 export const P = styled.p`
 	margin-bottom: 10px;
 	background-color: var(--bg-color-secondary);
@@ -22,4 +27,5 @@ export const P = styled.p`
 	max-height: 80px;
 	word-wrap:break-word;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	min-height: 24px;
 `
