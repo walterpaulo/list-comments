@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '../../components/Button';
 import { Textarea } from '../../components/Textarea';
 import { Container } from './style';
 
@@ -6,7 +7,7 @@ function Comment() {
 	return (
 		<Container>
 				<Textarea ></Textarea>
-				<button>Comentar</button>
+				<Button>Comentar</Button>
 				<ul>
 					<li>Comentário 1</li>
 					<li>Comentário 2</li>
