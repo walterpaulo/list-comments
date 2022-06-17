@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import Comment from './pages/Comment'
 
 function App() {
 
   return (
     <>
-      Walter
+      <Comment />
     </>
   )
 }
