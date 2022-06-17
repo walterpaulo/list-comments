@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '../../components/Button';
 import { Textarea } from '../../components/Textarea';
 import { P, BoxMessagem, Container, ShowButton, MessageDialog, MessageText, BoxButtonH } from './style';
+import { FiXCircle } from "react-icons/fi";
 
 function Comment() {
 
@@ -19,8 +20,8 @@ function Comment() {
     setIsButton(false)
 	}
 
-  const isDialog = (e: any) => {
-    console.log(e)
+  const isDialog = () => {
+    setMessageDialog(!messageDialog)
   }
 
 	const handleTextarae = (e: any) =>{
@@ -31,15 +32,17 @@ function Comment() {
 		setNumeberText( maxLength - countCharacter )
     countCharacter >= 3? setIsButton(true) : setIsButton(false)
   }
-
+  console.log(messageDialog)
 	return (
 		<Container>
-      <MessageDialog>
+      <MessageDialog 
+        display={messageDialog? 'flex' : 'none'}
+        onClick={isDialog}>
         <MessageText>
           <p>Apagar?</p>
           <BoxButtonH>
-            <Button onClick={isDialog}>Cancelar</Button>
-            <Button onClick={isDialog}>Excluir</Button>
+            <Button>Cancelar</Button>
+            <Button>Excluir</Button>
           </BoxButtonH>
         </MessageText>
       </MessageDialog>
@@ -54,7 +57,9 @@ function Comment() {
       )}
       <BoxMessagem>
       {listComment.map((prop, i)=>(
-        <P key={i}>{prop}</P>
+        <P key={i}>
+          <FiXCircle onClick={isDialog} color="var(--text-color-primary)" size={20} />
+          {prop}</P>
         ))}
       </BoxMessagem>
 		</Container>

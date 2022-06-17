@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type BoxProps = {
+	display: string
+}
+
 export const Container = styled.div`
 	width: 414px;
 	min-height: calc(100vh - 10px);
@@ -23,6 +27,7 @@ export const ShowButton = styled.div`
 `
 export const P = styled.p`
 	margin-bottom: 10px;
+	position: relative;
 	background-color: var(--bg-color-secondary);
 	padding: 20px 5%;
 	border-radius: 5px;
@@ -31,15 +36,22 @@ export const P = styled.p`
 	word-wrap:break-word;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	min-height: 24px;
+
+	svg{
+		position: absolute;
+		top: 3px;
+		right: 5px;
+		cursor: pointer;
+	}
 `
-export const MessageDialog = styled.div`
-	display: none;
+export const MessageDialog = styled.div<BoxProps>`
+	display: ${prop=> prop.display? prop.display : 'none'};
 	position: absolute;
 	top: 0;
 	background-color: rgba(0, 0, 0, 0.5);
 	width: 100vw;
-	height: 100vh;
-	z-index: 999;
+	height: 100%;
+	z-index: 9;
 	justify-content: center;
 	align-items: center;
 `
@@ -54,6 +66,7 @@ export const MessageText = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
+	z-index: 10;
 `
 export const BoxButtonH = styled.div`
 	display: flex;

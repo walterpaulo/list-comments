@@ -27,5 +27,6 @@ export const MaxLengthTextare = styled.div`
     bottom: 3px;
     right: 40px;
     font-size: 12px;
+    color: var(--color-bg-black);
 
 `
