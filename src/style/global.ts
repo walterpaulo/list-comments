@@ -16,4 +16,8 @@ export default createGlobalStyle`
     --border-color: #565656;
     --border-color-white-clear: #F6D9DC;
   }
+  body{
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+  }
   `
