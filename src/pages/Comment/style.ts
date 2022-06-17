@@ -14,6 +14,7 @@ export const Container = styled.div`
 `
 export const BoxMessagem = styled.div`
 	width: 90%;
+	margin-bottom: 60px;
 	`
 export const ShowButton = styled.div`
 	width: 90%;
