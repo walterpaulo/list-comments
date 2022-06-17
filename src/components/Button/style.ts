@@ -16,8 +16,9 @@ export const Container = styled.button<Buttonprops>`
   cursor: pointer;
   border-radius: 5px;
   transition: box-shadow .7s;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   &:hover{
-    box-shadow: 5px 10px var(--bg-color-secondary);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 `
