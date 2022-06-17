@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { TextareaHTMLAttributes } from 'react';
+import { Container } from './style';
 
-function Textarea({ children }: { children?: React.FC }) {
+type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement>
+
+export const Textarea:React.FC<TextareaProps> = ({ children, ...rest }) => {
     return (
-        <Textarea>
+        <Container {...rest}>
             {children}
-        </Textarea>
+        </Container>
     );
 }
-
-export default Textarea;

@@ -1,11 +1,11 @@
 import React from 'react';
-import Textarea from '../../components/Textarea';
+import { Textarea } from '../../components/Textarea';
 import { Container } from './style';
 
 function Comment() {
 	return (
 		<Container>
-				<Textarea></Textarea>
+				<Textarea ></Textarea>
 				<button>Comentar</button>
 				<ul>
 					<li>Comentário 1</li>
