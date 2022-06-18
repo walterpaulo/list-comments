@@ -20,7 +20,8 @@ function Comment() {
     setIsButton(false)
 	}
 
-  const isDialog = () => {
+  const isDialog = (e: any) => {
+    console.log(e)
     setMessageDialog(!messageDialog)
   }
 
@@ -37,11 +38,12 @@ function Comment() {
 		<Container>
       <MessageDialog 
         display={messageDialog? 'flex' : 'none'}
-        onClick={isDialog}>
+        >
         <MessageText>
+          <FiXCircle onClick={isDialog} color="var(--text-color-primary)" size={25} />
           <p>Apagar?</p>
           <BoxButtonH>
-            <Button>Cancelar</Button>
+            <Button onClick={isDialog}>Cancelar</Button>
             <Button>Excluir</Button>
           </BoxButtonH>
         </MessageText>
@@ -59,7 +61,7 @@ function Comment() {
       {listComment.map((prop, i)=>(
         <P key={i}>
           <FiXCircle onClick={isDialog} color="var(--text-color-primary)" size={20} />
-          {prop}</P>
+          {prop} +{i}</P>
         ))}
       </BoxMessagem>
 		</Container>

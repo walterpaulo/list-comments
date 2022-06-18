@@ -46,9 +46,11 @@ export const P = styled.p`
 `
 export const MessageDialog = styled.div<BoxProps>`
 	display: ${prop=> prop.display? prop.display : 'none'};
-	position: absolute;
+	position: fixed;
 	top: 0;
-	background-color: rgba(0, 0, 0, 0.5);
+	left: 0;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.7);
 	width: 100vw;
 	height: 100%;
 	z-index: 9;
@@ -67,6 +69,14 @@ export const MessageText = styled.div`
 	align-items: center;
 	justify-content: space-around;
 	z-index: 10;
+	position: relative;
+
+	svg{
+		position: absolute;
+		top: 6px;
+		right: 6px;
+		cursor: pointer;
+	}
 `
 export const BoxButtonH = styled.div`
 	display: flex;
