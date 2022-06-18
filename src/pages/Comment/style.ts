@@ -25,7 +25,7 @@ export const ShowButton = styled.div`
 	display: flex;
 	justify-content: center;
 `
-export const P = styled.p`
+export const P = styled.div`
 	margin-bottom: 10px;
 	position: relative;
 	background-color: var(--bg-color-secondary);
@@ -50,7 +50,7 @@ export const MessageDialog = styled.div<BoxProps>`
 	top: 0;
 	left: 0;
 	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba(0, 0, 0, 0.5);
 	width: 100vw;
 	height: 100%;
 	z-index: 9;
@@ -60,8 +60,9 @@ export const MessageDialog = styled.div<BoxProps>`
 export const MessageText = styled.div`
 	display: flex;
 	background-color: var(--bg-color);
-	width: 270px;
-	height: 120px;
+	min-width: 270px;
+	min-height: 120px;
+	max-width: 300px;
 	border-radius: 5px;
 	color: var(--color-bg-black);
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -70,6 +71,7 @@ export const MessageText = styled.div`
 	justify-content: space-around;
 	z-index: 10;
 	position: relative;
+	padding: 10px;
 
 	svg{
 		position: absolute;

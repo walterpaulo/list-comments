@@ -19,9 +19,7 @@ function Comment() {
 		setNumeberText(108)
     setIsButton(false)
 	}
-
-  const isDialog = (e: any) => {
-    console.log(e)
+  const setDialogState = () => {
     setMessageDialog(!messageDialog)
   }
 
@@ -33,21 +31,38 @@ function Comment() {
 		setNumeberText( maxLength - countCharacter )
     countCharacter >= 3? setIsButton(true) : setIsButton(false)
   }
+  const isDialog = (prop:string, id:number) => {
+    console.log(prop, id)
+
+    boxMessage(prop,id)
+    setDialogState()
+  }
+
+  const boxMessage = (prop: string, i: number) =>{
+   return(
+    <MessageDialog display="flex">
+          <MessageText>
+            <FiXCircle color="var(--text-color-primary)" size={25} />
+            <p>Apagar?</p>
+            <BoxButtonH>
+              <Button>Cancelar</Button>
+              <Button>Excluir</Button>
+            </BoxButtonH>
+        </MessageText>
+    </MessageDialog>
+   )
+  }
+  // const showBoxMessage = (i: number) => {
+  //   const boxMessage = document.getElementById("idBox"+i.toString())
+  //   // const boxMessage = document.querySelector("#idBox"+i.toString())
+
+  //   // return boxMessage?.setAttribute('display','flex')
+  //   boxMessage?.setAttribute('display', 'flex')
+  //   return boxMessage?.attributes[0].value
+  // }
   console.log(messageDialog)
 	return (
 		<Container>
-      <MessageDialog 
-        display={messageDialog? 'flex' : 'none'}
-        >
-        <MessageText>
-          <FiXCircle onClick={isDialog} color="var(--text-color-primary)" size={25} />
-          <p>Apagar?</p>
-          <BoxButtonH>
-            <Button onClick={isDialog}>Cancelar</Button>
-            <Button>Excluir</Button>
-          </BoxButtonH>
-        </MessageText>
-      </MessageDialog>
       <img src='./images/imagep.jpg' alt='image' />
 			<h2>Postar novo comentário</h2>
       <Textarea width='80%' height='100px' maxLength={108} numberText={numberText} onChange={handleTextarae} value={comment}>
@@ -60,10 +75,35 @@ function Comment() {
       <BoxMessagem>
       {listComment.map((prop, i)=>(
         <P key={i}>
-          <FiXCircle onClick={isDialog} color="var(--text-color-primary)" size={20} />
-          {prop} +{i}</P>
+          <FiXCircle onClick={()=>{isDialog(prop, i)}} color="var(--text-color-primary)" size={20} />
+          {prop} +{i}
+
+          {/* {boxMessage(prop, i)} */}
+          {/* {console.log('id',showBoxMessage(i))} */}
+
+          {/* {messageDialog && console.log(document.getElementById("idBox"+i.toString()))} */}
+          {/* {messageDialog && 
+          <>
+            {boxMessage(prop, i)}
+            {document.getElementById("idBox"+i.toString())?.setAttribute("display", "none")}
+            <MessageDialog
+            display="flex">
+            </MessageDialog>
+          </>
+          } */}
+          </P>
         ))}
       </BoxMessagem>
+      <MessageDialog display={messageDialog? "flex" : "none"}>
+          <MessageText>
+            <FiXCircle color="var(--text-color-primary)" size={25} />
+            <p>Apagar?</p>
+            <BoxButtonH>
+              <Button>Cancelar</Button>
+              <Button>Excluir</Button>
+            </BoxButtonH>
+        </MessageText>
+    </MessageDialog>
 		</Container>
 	);
 }
