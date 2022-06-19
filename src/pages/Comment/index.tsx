@@ -3,12 +3,12 @@ import { Button } from '../../components/Button';
 import { Textarea } from '../../components/Textarea';
 import { P, BoxMessagem, Container, ShowButton, MessageDialog, MessageText, BoxButtonH } from './style';
 import { FiXCircle } from "react-icons/fi";
+import { getComments, newComment, removeComment } from '../../services/dataLocal';
 
 function Comment() {
 
 	const [ comment, setComment] = useState<string>()
 	const [ messageExcluir, setmessageExcluir] = useState<string>()
-	const [ listComment, setListComment] = useState([])
 	const [ numberText, setNumeberText] = useState<number>()
   const [ isButton, setIsButton] = useState(false)
   const [ messageDialog, setMessageDialog] = useState(false)
@@ -16,47 +16,14 @@ function Comment() {
 	
 	const addComment = ()=>{
     newComment(comment || "")
-		setListComment(list=> [...list, comment])
 		setComment("")
 		setNumeberText(108)
     setIsButton(false)
 	}
-  const newComment = (comment: string) => {
-    const commentsStorage = JSON.parse(localStorage.getItem("comments_bd"))
-    let newComment
-    const id = getNewID()
-    if (commentsStorage) {
-      newComment = [...commentsStorage, { comment, id }]
-    } else {
-      newComment = [{ comment }]
-    }
-    localStorage.setItem("comments_bd", JSON.stringify(newComment))
-    return
-  }
 
-  const getNewID = () => {
-    return Math.floor(Date.now() * Math.random()).toString(36)
-  }
-
-  const getComments = () => {
-    const commentsStorage = JSON.parse(localStorage.getItem("comments_bd"))
-    if (!commentsStorage) {
-      localStorage.setItem("comments_bd", JSON.stringify([]))
-    }
-    return commentsStorage
-  }
-
-  const removeComment = (id: string) => {
-    const commentsStorage = JSON.parse(localStorage.getItem("comments_bd"))
-
-    if (!commentsStorage) {
-      localStorage.setItem("comments_bd", JSON.stringify([]))
-      return
-    }
-    const hasCommets = commentsStorage?.filter((prop) => prop.id !== id)
-    localStorage.setItem("comments_bd", JSON.stringify(hasCommets))
-
+  const deleteComment = (id: string) => {
     setDialogState()
+    removeComment(id)
   }
 	const handleTextarae = (e: any) =>{
 		const textTextare = e.target.value
@@ -66,7 +33,7 @@ function Comment() {
 		setNumeberText( maxLength - countCharacter )
     countCharacter >= 3? setIsButton(true) : setIsButton(false)
   }
-  const isDialog = (prop:string, id:any) => {
+  const isDialog = (prop:string, id:string) => {
     setmessageExcluir(prop)
     setIndice(id)
     setDialogState()
@@ -83,7 +50,7 @@ function Comment() {
         {messageExcluir}
         <BoxButtonH>
           <Button onClick={setDialogState}>Cancelar</Button>
-          <Button onClick={()=> (removeComment(indice || ""))}>Excluir</Button>
+          <Button onClick={()=> (deleteComment(indice || ""))}>Excluir</Button>
         </BoxButtonH>
       </MessageText>
     </MessageDialog>
