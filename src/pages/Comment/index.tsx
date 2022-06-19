@@ -15,13 +15,42 @@ function Comment() {
   const [ indice, setIndice] = useState<number>(0)
 	
 	const addComment = ()=>{
+    newComment(comment || "")
 		setListComment(list=> [...list, comment])
 		setComment("")
 		setNumeberText(108)
     setIsButton(false)
 	}
-  const removeComment = () => {
-    listComment.splice(indice)
+  const newComment = (comment: string) => {
+    const commentsStorage = JSON.parse(localStorage.getItem("comments_bd"))
+    let newComment
+    if (commentsStorage) {
+      newComment = [...commentsStorage, { comment }]
+    } else {
+      newComment = [{ comment }]
+    }
+    localStorage.setItem("comments_bd", JSON.stringify(newComment))
+    return
+  }
+
+  const getComments = () => {
+    const commentsStorage = JSON.parse(localStorage.getItem("comments_bd"))
+    if (!commentsStorage) {
+      localStorage.setItem("comments_bd", JSON.stringify([]))
+    }
+    return commentsStorage
+  }
+
+  const removeComment = (comment: string) => {
+    const commentsStorage = JSON.parse(localStorage.getItem("comments_bd"))
+
+    if (!commentsStorage) {
+      localStorage.setItem("comments_bd", JSON.stringify([]))
+      return
+    }
+    const hasCommets = commentsStorage?.filter((prop) => prop.comment !== comment)
+    localStorage.setItem("comments_bd", JSON.stringify(hasCommets))
+
     setDialogState()
   }
 	const handleTextarae = (e: any) =>{
@@ -49,12 +78,13 @@ function Comment() {
         {messageExcluir}
         <BoxButtonH>
           <Button onClick={setDialogState}>Cancelar</Button>
-          <Button onClick={removeComment}>Excluir</Button>
+          <Button onClick={()=> (removeComment(messageExcluir || ""))}>Excluir</Button>
         </BoxButtonH>
       </MessageText>
     </MessageDialog>
    )
   }
+  const listText = getComments()
 	return (
 		<Container>
       <img src='./images/imagep.jpg' alt='image' />
@@ -67,10 +97,10 @@ function Comment() {
       </ShowButton>
       )}
       <BoxMessagem>
-      {listComment.map((prop, i)=>(
+      {getComments().map((prop, i)=>(
         <P key={i}>
-          <FiXCircle onClick={()=>{isDialog(prop, i)}} color="var(--text-color-primary)" size={20} />
-          {prop} id: {i}
+          <FiXCircle onClick={()=>{isDialog(prop.comment, i)}} color="var(--text-color-primary)" size={20} />
+          {prop.comment}
           </P>
         ))}
       </BoxMessagem>
