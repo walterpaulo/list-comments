@@ -12,7 +12,7 @@ function Comment() {
 	const [ numberText, setNumeberText] = useState<number>()
   const [ isButton, setIsButton] = useState(false)
   const [ messageDialog, setMessageDialog] = useState(false)
-  const [ indice, setIndice] = useState<number>(0)
+  const [ indice, setIndice] = useState<string>()
 	
 	const addComment = ()=>{
     newComment(comment || "")
@@ -24,13 +24,18 @@ function Comment() {
   const newComment = (comment: string) => {
     const commentsStorage = JSON.parse(localStorage.getItem("comments_bd"))
     let newComment
+    const id = getNewID()
     if (commentsStorage) {
-      newComment = [...commentsStorage, { comment }]
+      newComment = [...commentsStorage, { comment, id }]
     } else {
       newComment = [{ comment }]
     }
     localStorage.setItem("comments_bd", JSON.stringify(newComment))
     return
+  }
+
+  const getNewID = () => {
+    return Math.floor(Date.now() * Math.random()).toString(36)
   }
 
   const getComments = () => {
@@ -41,14 +46,14 @@ function Comment() {
     return commentsStorage
   }
 
-  const removeComment = (comment: string) => {
+  const removeComment = (id: string) => {
     const commentsStorage = JSON.parse(localStorage.getItem("comments_bd"))
 
     if (!commentsStorage) {
       localStorage.setItem("comments_bd", JSON.stringify([]))
       return
     }
-    const hasCommets = commentsStorage?.filter((prop) => prop.comment !== comment)
+    const hasCommets = commentsStorage?.filter((prop) => prop.id !== id)
     localStorage.setItem("comments_bd", JSON.stringify(hasCommets))
 
     setDialogState()
@@ -78,7 +83,7 @@ function Comment() {
         {messageExcluir}
         <BoxButtonH>
           <Button onClick={setDialogState}>Cancelar</Button>
-          <Button onClick={()=> (removeComment(messageExcluir || ""))}>Excluir</Button>
+          <Button onClick={()=> (removeComment(indice || ""))}>Excluir</Button>
         </BoxButtonH>
       </MessageText>
     </MessageDialog>
@@ -99,7 +104,7 @@ function Comment() {
       <BoxMessagem>
       {getComments().map((prop, i)=>(
         <P key={i}>
-          <FiXCircle onClick={()=>{isDialog(prop.comment, i)}} color="var(--text-color-primary)" size={20} />
+          <FiXCircle onClick={()=>{isDialog(prop.comment, prop.id)}} color="var(--text-color-primary)" size={20} />
           {prop.comment}
           </P>
         ))}
