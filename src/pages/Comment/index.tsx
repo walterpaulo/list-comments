@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '../../components/Button';
 import { Textarea } from '../../components/Textarea';
-import { P, BoxMessagem, Container, ShowButton, MessageDialog, MessageText, BoxButtonH } from './style';
+import { P, BoxMessagem, Container, ShowButton, MessageDialog, MessageText, BoxButtonH, ImgComment } from './style';
 import { FiXCircle } from "react-icons/fi";
 import { getComments, newComment, removeComment } from '../../services/dataLocal';
+import { Text2 } from '../../components/Text2';
 
 function Comment() {
 
@@ -59,8 +60,8 @@ function Comment() {
   const listText = getComments()
 	return (
 		<Container>
-      <img src='./images/imagep.jpg' alt='image' />
-			<h2>Postar novo comentário</h2>
+      <ImgComment src='./images/imagep.jpg' alt='image' min-width={200}/>
+      <Text2>Postar novo comentário</Text2>
       <Textarea width='80%' height='100px' maxLength={108} numberText={numberText} onChange={handleTextarae} value={comment}>
       </Textarea>
       {isButton &&(

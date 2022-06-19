@@ -3,9 +3,13 @@ import styled from "styled-components";
 type BoxProps = {
 	display: string
 }
+type TImg = {
+	w
+}
 
 export const Container = styled.div`
 	width: 414px;
+	min-width: 200px;
 	min-height: calc(100vh - 10px);
 	display: flex;
 	flex-direction: column;
@@ -16,8 +20,14 @@ export const Container = styled.div`
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	margin: 10px 0 40px 0;
 `
+export const ImgComment = styled.img`
+	width: 90%;
+	min-width: 200px;
+	min-height: auto;
+`
 export const BoxMessagem = styled.div`
 	width: 90%;
+	min-width: 200px;
 	margin-bottom: 60px;
 	`
 export const ShowButton = styled.div`
