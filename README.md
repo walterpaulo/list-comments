@@ -16,5 +16,13 @@
 
 ### Resultado
 
-![Image lista de comentários](./public/list-comments.png)
+![Image lista de comentários](./public/images/list-comments.png)
+
+
+![Image lista de comentários 2](./public/images/listCommentsTitle.gif)
+
+Eu quero acessar o [vídeo](https://www.youtube.com/watch?v=z7SZD3p9BlE)
+
+
+
 
