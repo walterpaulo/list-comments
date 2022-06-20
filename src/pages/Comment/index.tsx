@@ -42,6 +42,10 @@ function Comment() {
   const setDialogState = () => {
     setMessageDialog(!messageDialog)
   }
+  const getCommentTitle = () =>{
+    const numberTotal = getComments().length
+    return numberTotal > 0 ? `Comentários(${numberTotal})`: "Seja a primeira pessoa a comentar"
+  }
   const boxMessage = () =>{
    return(
     <MessageDialog display={messageDialog? "flex" : "none"}>
@@ -61,7 +65,7 @@ function Comment() {
 	return (
 		<Container>
       <ImgComment src='./images/imagep.jpg' alt='image' min-width={200}/>
-      <Text2>Postar novo comentário</Text2>
+      <Text2>{getCommentTitle()}</Text2>
       <Textarea width='80%' height='100px' maxLength={108} numberText={numberText} onChange={handleTextarae} value={comment}>
       </Textarea>
       {isButton &&(
